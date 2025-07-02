@@ -464,6 +464,7 @@
   const CLIENT_ID = 'CLIENT_ID_ANDA_DI_SINI';
   const BLOG_ID = 'BLOG_ID_ANDA_DI_SINI';
   const SCOPES = 'https://www.googleapis.com/auth/blogger';
+
   const IMGBB_API_KEYS = [
     'KUNCI_IMGBB_ANDA_1',
     'KUNCI_IMGBB_ANDA_2',
@@ -527,7 +528,7 @@
   }
 
   async function initializeApplication() {
-    console.log('initializeApplication: Memulai proses inisialisasi utama...');
+    console.log('Memulai proses inisialisasi utama...');
 
     if (!CLIENT_ID || CLIENT_ID === 'CLIENT_ID_ANDA_DI_SINI') {
       showStatus('Error: Client ID belum disetel atau menggunakan placeholder default di kode. Harap periksa kode.', 'error');
@@ -553,7 +554,7 @@
     }
 
     if (typeof google !== 'undefined' && typeof google.accounts !== 'undefined' && typeof google.accounts.oauth2 !== 'undefined') {
-      console.log('initializeApplication: Menginisialisasi GSI tokenClient...');
+      console.log('Menginisialisasi GSI tokenClient...');
       tokenClient = google.accounts.oauth2.initTokenClient({
         client_id: CLIENT_ID,
         scope: SCOPES,
@@ -566,9 +567,10 @@
               gapi.client.setToken({ access_token: currentAccessToken });
               showStatus('Otorisasi Google berhasil didapatkan!', 'success');
               updateUiState();
-              if (pendingPostCreation) {
-                pendingPostCreation = false;
-                createPost();
+              if (window.pendingPostCreation) {
+                window.pendingPostCreation = false;
+                createPost(window.pendingPostEvent);
+                window.pendingPostEvent = null;
               }
             } else {
               console.warn('gapi.client belum siap saat token diterima. Menunggu GAPI.');
@@ -589,11 +591,11 @@
         }
       });
       
-      console.log('initializeApplication: Mencoba mendapatkan token akses secara pasif...');
+      console.log('Mencoba mendapatkan token akses secara pasif...');
       tokenClient.requestAccessToken({ prompt: 'none' });
 
     } else {
-      console.error('initializeApplication: Google Identity Services (GSI) tidak dapat diakses. Mungkin script GSI belum dimuat atau ada masalah.');
+      console.error('Google Identity Services (GSI) tidak dapat diakses. Mungkin script GSI belum dimuat atau ada masalah.');
       showStatus('Gagal memuat Google Identity Services. Periksa konsol.', 'error');
       document.getElementById('createPostBtn_mangaOyonde').disabled = true;
       document.getElementById('googleAuthButton_mangaOyonde').disabled = true;
@@ -602,15 +604,15 @@
 
     if (typeof gapi !== 'undefined' && typeof gapi.load === 'function') {
       gapi.load('client', async () => {
-        console.log('initializeApplication: gapi.client siap. Mencoba memuat Blogger API client (gapi.client.blogger) via shorthand...');
+        console.log('gapi.client siap. Mencoba memuat Blogger API client (gapi.client.blogger) via shorthand...');
         try {
           await gapi.client.load('blogger', 'v3');
-          console.log('initializeApplication: Blogger API client (gapi.client.blogger) berhasil dimuat. isBloggerApiLoaded = true;');
+          console.log('Blogger API client (gapi.client.blogger) berhasil dimuat. isBloggerApiLoaded = true;');
           isBloggerApiLoaded = true;
           updateUiState();
         } catch (error) {
           let errorMessage = 'Gagal memuat Blogger API client.';
-          console.error("initializeApplication: Error loading Blogger API client (from gapi.client.load catch):", error);
+          console.error("Error loading Blogger API client (from gapi.client.load catch):", error);
           if (error.status === 403) {
             errorMessage += " (Akses Ditolak. Pastikan Blogger API diaktifkan di Google Cloud Console dan Client ID Anda dikonfigurasi dengan benar.)";
           } else if (error.message) {
@@ -626,7 +628,7 @@
         }
       });
     } else {
-      console.error('initializeApplication: Google API Client (gapi) tidak dapat diakses atau fungsi gapi.load tidak ditemukan.');
+      console.error('Google API Client (gapi) tidak dapat diakses atau fungsi gapi.load tidak ditemukan.');
       showStatus('Gagal memuat Google API Client. Periksa konsol.', 'error');
       document.getElementById('createPostBtn_mangaOyonde').disabled = true;
       document.getElementById('googleAuthButton_mangaOyonde').disabled = true;
@@ -669,6 +671,9 @@
     console.log('UI State:', { appReady, userAuthorized, isGsiScriptLoaded, isGapiScriptLoaded, isBloggerApiLoaded, hasToken: !!currentAccessToken });
   }
 
+  window.pendingPostCreation = false;
+  window.pendingPostEvent = null;
+
   function handleAuthClick() {
     if (!CLIENT_ID || CLIENT_ID === 'CLIENT_ID_ANDA_DI_SINI') {
       showStatus('Error: Client ID belum disetel di kode. Harap periksa bagian KONSTANTA KONFIGURASI API PRIBADI ANDA.', 'error');
@@ -701,8 +706,11 @@
     const createPostBtn = document.getElementById('createPostBtn_mangaOyonde');
 
     if (!currentAccessToken || !isBloggerApiLoaded || !gapi.client.blogger) {
-      showStatus('Aplikasi belum sepenuhnya siap atau otorisasi diperlukan. Coba hubungkan akun Google Anda terlebih dahulu.', 'error');
-      console.warn('Percobaan membuat postingan tanpa token atau API yang dimuat.');
+      showStatus('Aplikasi belum sepenuhnya siap atau otorisasi diperlukan. Mencoba otorisasi ulang...', 'error');
+      console.warn('Percobaan membuat postingan tanpa token atau API yang dimuat. Meminta otorisasi.');
+      window.pendingPostCreation = true;
+      window.pendingPostEvent = event;
+      handleAuthClick();
       return;
     }
 
@@ -828,10 +836,6 @@
           document.getElementById('charCount_mangaOyonde').textContent = '0/150';
           document.getElementById('postPermalink_mangaOyonde').value = '';
         }
-        scheduleTimeSelect.disabled = true;
-        publishNowRadio.checked = true;
-        document.getElementById('customPublishDate_mangaOyonde').disabled = true;
-        document.getElementById('customPublishTime_mangaOyonde').disabled = true;
       } else {
         let errorMessage = 'Terjadi kesalahan tidak diketahui.';
         if (response.result && response.result.error && response.result.error.message) {
@@ -842,7 +846,7 @@
             if (errorBody.error && errorBody.error.message) {
               errorMessage = errorBody.error.message;
             }
-          } catch (e) { /* ignore */ }
+          } catch (e) { }
         }
         showStatus('Gagal membuat postingan: ' + errorMessage, 'error');
         console.error('Error saat membuat postingan:', response);
@@ -983,23 +987,44 @@
       if (document.getElementById('viewHtml_mangaOyonde').checked) {
         const currentContent = postContentInput.value;
         const cursorPosition = postContentInput.selectionStart;
-        const newContent = [currentContent.slice(0, cursorPosition), allEmbedTags, currentContent.slice(cursorPosition)].join('');
+        const newContent = [currentContent.slice(0, cursorPosition), '\n\n', allEmbedTags, '\n\n', currentContent.slice(cursorPosition)].join('');
         postContentInput.value = newContent;
+        postContentInput.selectionStart = postContentInput.selectionEnd = cursorPosition + '\n\n'.length + allEmbedTags.length + '\n\n'.length;
+        postContentInput.focus();
       } else {
+        composeContentDiv.focus();
         const selection = window.getSelection();
         if (selection.rangeCount > 0) {
-          const range = selection.getRangeAt(0);
-          range.deleteContents();
-          const div = document.createElement('div');
-          div.innerHTML = allEmbedTags;
-          while (div.firstChild) {
-            range.insertNode(div.firstChild);
-          }
-          range.collapse(false);
-          selection.removeAllRanges();
-          selection.addRange(range);
+            const range = selection.getRangeAt(0);
+            range.deleteContents();
+            
+            const tempContainer = document.createElement('div');
+            // Tambahkan <br> langsung setelah div gambar untuk pemisahan baris
+            tempContainer.innerHTML = allEmbedTags + '<br>'; 
+            
+            const fragment = document.createDocumentFragment();
+            let lastNode = null;
+            while (tempContainer.firstChild) {
+                lastNode = fragment.appendChild(tempContainer.firstChild);
+            }
+
+            range.insertNode(fragment);
+            
+            if (lastNode) {
+                // Pindahkan kursor setelah node terakhir yang disisipkan (yang seharusnya adalah <br>)
+                range.setStartAfter(lastNode);
+                range.collapse(true);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
         } else {
-          composeContentDiv.innerHTML += allEmbedTags;
+            // Fallback jika tidak ada range yang ditemukan
+            composeContentDiv.innerHTML += allEmbedTags + '<br>';
+            const newRange = document.createRange();
+            newRange.selectNodeContents(composeContentDiv);
+            newRange.collapse(false);
+            selection.removeAllRanges();
+            selection.addRange(newRange);
         }
         postContentInput.value = composeContentDiv.innerHTML;
       }
@@ -1046,6 +1071,7 @@
       const savedCustomPublishDate = localStorage.getItem('bloggerAppCustomPublishDate');
       const savedCustomPublishTime = localStorage.getItem('bloggerAppCustomPublishTime');
 
+
       if (postTitleInput && savedTitle) {
         postTitleInput.value = savedTitle;
       }
@@ -1087,15 +1113,16 @@
         localStorage.setItem('bloggerAppPublishOptionType', selectedPublishOption.id.replace('_mangaOyonde', ''));
         if (selectedPublishOption.value === 'customRelative') {
           localStorage.setItem('bloggerAppScheduleTimeValue', scheduleTimeSelect.value);
-        } else {
-          localStorage.removeItem('bloggerAppScheduleTimeValue');
-        }
-        if (selectedPublishOption.value === 'customAbsolute') {
+          localStorage.removeItem('bloggerAppCustomPublishDate');
+          localStorage.removeItem('bloggerAppCustomPublishTime');
+        } else if (selectedPublishOption.value === 'customAbsolute') {
           localStorage.setItem('bloggerAppCustomPublishDate', customPublishDateInput.value);
           localStorage.setItem('bloggerAppCustomPublishTime', customPublishTimeInput.value);
+          localStorage.removeItem('bloggerAppScheduleTimeValue');
         } else {
-          localStorage.removeItem('bloggerAppCustomPublishTime');
+          localStorage.removeItem('bloggerAppScheduleTimeValue');
           localStorage.removeItem('bloggerAppCustomPublishDate');
+          localStorage.removeItem('bloggerAppCustomPublishTime');
         }
       }
     }
