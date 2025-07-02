@@ -1,0 +1,1204 @@
+<style>
+  :root {
+    --mo-bg: #121212;
+    --mo-card-bg: #1e1e1e;
+    --mo-text: #f1f1f1;
+    --mo-text-muted: #aaa;
+    --mo-primary: #4caf50;
+    --mo-primary-hover: #43a047;
+    --mo-danger: #e53935;
+    --mo-warning: #ffb300;
+    --mo-info: #2196f3;
+    --mo-border: #333;
+  }
+
+  #bloggerPostCreatorApp_mangaOyonde {
+    max-width: 720px;
+    margin: 20px auto;
+    padding: 24px;
+    background-color: var(--mo-card-bg);
+    color: var(--mo-text);
+    font-family: 'Inter', sans-serif;
+    border: 1px solid var(--mo-border);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+
+  #bloggerPostCreatorApp_mangaOyonde h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+    color: var(--mo-text);
+  }
+
+  .form-group-mangaOyonde {
+    margin-bottom: 20px;
+  }
+
+  .form-group-mangaOyonde label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--mo-text);
+  }
+
+  .form-group-mangaOyonde input[type="text"],
+  .form-group-mangaOyonde textarea,
+  .form-group-mangaOyonde select,
+  #composeContent_mangaOyonde {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid var(--mo-border);
+    border-radius: 8px;
+    background-color: #2a2a2a;
+    color: var(--mo-text);
+    box-sizing: border-box;
+  }
+
+  .form-group-mangaOyonde input::placeholder,
+  .form-group-mangaOyonde textarea::placeholder {
+    color: var(--mo-text-muted);
+  }
+
+  .form-group-mangaOyonde .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+  }
+
+  .form-group-mangaOyonde .radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #2c2c2c;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--mo-border);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    margin-bottom: 0;
+    font-weight: 400;
+    color: var(--mo-text);
+  }
+
+  .form-group-mangaOyonde .radio-group input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--mo-primary);
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    background-color: #121212;
+    cursor: pointer;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .form-group-mangaOyonde .radio-group input[type="radio"]:checked {
+    background-color: var(--mo-primary);
+    border-color: var(--mo-primary);
+  }
+
+  .form-group-mangaOyonde .radio-group input[type="radio"]:checked::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--mo-text);
+    border-radius: 50%;
+  }
+
+  .form-group-mangaOyonde .radio-group label:hover {
+    background-color: #333;
+  }
+
+  .form-group-mangaOyonde .radio-group select {
+    width: auto;
+    margin-left: 10px;
+  }
+  .form-group-mangaOyonde .radio-group input[type="date"],
+  .form-group-mangaOyonde .radio-group input[type="time"] {
+    width: auto;
+    margin-left: 5px;
+  }
+
+  .file-input-group-mangaOyonde {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .file-input-group-mangaOyonde input[type="file"] {
+    display: none;
+  }
+
+  .file-input-label-mangaOyonde {
+    background-color: var(--mo-info);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .file-input-label-mangaOyonde:hover {
+    background-color: #1976d2;
+  }
+
+  .file-name-display-mangaOyonde {
+    flex-grow: 1;
+    color: var(--mo-text-muted);
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 8px 0;
+  }
+
+  #createPostBtn_mangaOyonde,
+  .primary-btn-mangaOyonde, .danger-btn-mangaOyonde {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--mo-primary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    margin-top: 20px;
+  }
+
+  #createPostBtn_mangaOyonde:hover {
+    background-color: var(--mo-primary-hover);
+  }
+
+  #createPostBtn_mangaOyonde:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+
+  .primary-btn-mangaOyonde {
+    background-color: var(--mo-primary);
+    margin-top: 0;
+  }
+  .primary-btn-mangaOyonde:hover {
+    background-color: var(--mo-primary-hover);
+  }
+  .danger-btn-mangaOyonde {
+    background-color: var(--mo-danger);
+    margin-top: 0;
+  }
+  .danger-btn-mangaOyonde:hover {
+    background-color: #b71c1c;
+  }
+
+  .upload-btn-mangaOyonde {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: var(--mo-info);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .upload-btn-mangaOyonde:hover {
+    background-color: #1976d2;
+  }
+
+  .upload-btn-mangaOyonde:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+
+  .status-message-mangaOyonde {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .status-message-mangaOyonde.success {
+    background-color: #2e7d32;
+    color: #c8e6c9;
+  }
+
+  .status-message-mangaOyonde.error {
+    background-color: #c62828;
+    color: #ffebee;
+  }
+
+  .status-message-mangaOyonde.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-color: #bee5eb;
+  }
+
+  .status-link-mangaOyonde {
+    color: var(--mo-info);
+    text-decoration: underline;
+  }
+
+  .status-link-mangaOyonde:hover {
+    color: #64b5f6;
+  }
+
+  @media (max-width: 600px) {
+    #bloggerPostCreatorApp_mangaOyonde {
+      margin: 12px;
+      padding: 20px;
+    }
+
+    #bloggerPostCreatorApp_mangaOyonde h2 {
+      font-size: 1.3rem;
+    }
+
+    .form-group-mangaOyonde input,
+    .form-group-mangaOyonde textarea,
+    .form-group-mangaOyonde select,
+    #composeContent_mangaOyonde {
+      font-size: 13px;
+      padding: 10px;
+    }
+
+    #createPostBtn_mangaOyonde, .upload-btn-mangaOyonde, .primary-btn-mangaOyonde, .danger-btn-mangaOyonde {
+      font-size: 15px;
+      padding: 12px;
+    }
+    .form-group-mangaOyonde .radio-group label {
+      font-size: 12px;
+      padding: 6px 10px;
+      gap: 4px;
+    }
+    .form-group-mangaOyonde .radio-group input[type="radio"]:checked::before {
+      top: 3px;
+      left: 3px;
+      width: 6px;
+      height: 6px;
+    }
+    .file-input-label-mangaOyonde, .file-name-display-mangaOyonde {
+      font-size: 13px;
+      padding: 6px 10px;
+    }
+  }
+</style>
+
+<div id="bloggerPostCreatorApp_mangaOyonde">
+  <h2 style="text-align: center; margin-bottom: 24px; font-size: 1.5rem;">Buat Postingan Baru (Manga o Yonde)</h2>
+
+  <form id="postForm_mangaOyonde">
+    <div class="form-group-mangaOyonde">
+      <label for="postTitle_mangaOyonde">Judul:</label>
+      <input type="text" id="postTitle_mangaOyonde" placeholder="Masukkan judul postingan" required>
+    </div>
+
+    <div class="form-group-mangaOyonde">
+      <label>Isi Konten:</label>
+      <div class="radio-group">
+        <label for="viewHtml_mangaOyonde">
+          <input type="radio" id="viewHtml_mangaOyonde" name="contentView_mangaOyonde" value="html" checked>
+          Tampilan HTML
+        </label>
+        <label for="viewCompose_mangaOyonde">
+          <input type="radio" id="viewCompose_mangaOyonde" name="contentView_mangaOyonde" value="compose">
+          Tampilan Menulis
+        </label>
+      </div>
+      <textarea id="postContent_mangaOyonde" rows="15" placeholder="Masukkan konten postingan dalam format HTML" required></textarea>
+      <div id="composeContent_mangaOyonde" contenteditable="true" style="display: none; min-height: 200px; max-height: 400px; overflow-y: auto; padding: 12px; font-size: 14px; border: 1px solid var(--mo-border); border-radius: 8px; background-color: #2a2a2a; color: var(--mo-text); outline: none;"></div>
+    </div>
+
+    <div class="form-group-mangaOyonde" style="border-top: 1px solid var(--mo-border); padding-top: 20px; margin-top: 20px;">
+      <label>Unggah Gambar ke ImgBB:</label>
+      <div class="file-input-group-mangaOyonde">
+        <input type="file" id="imgbbFileInput_mangaOyonde" accept="image/jpeg,image/png,image/gif,image/bmp,image/tiff,image/webp,image/heic,image/heif,image/avif,application/pdf" multiple>
+        <label for="imgbbFileInput_mangaOyonde" class="file-input-label-mangaOyonde">Pilih File</label>
+        <span id="imgbbFileName_mangaOyonde" class="file-name-display-mangaOyonde">Tidak ada file dipilih</span>
+      </div>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+        <div style="flex: 1; min-width: 150px;">
+          <label for="imgSize_mangaOyonde" style="font-weight: normal; margin-bottom: 5px;">Ukuran:</label>
+          <select id="imgSize_mangaOyonde" style="width: 100%;">
+            <option value="original">Ukuran Asli</option>
+            <option value="small">Kecil (Max 200px)</option>
+            <option value="medium">Sedang (Max 320px)</option>
+            <option value="large">Besar (Max 400px)</option>
+            <option value="extralarge">Ekstra Besar (Max 600px)</option>
+          </select>
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <label style="font-weight: normal; margin-bottom: 5px;">Perataan:</label>
+          <div class="radio-group" style="gap: 6px;">
+            <label for="alignNone_mangaOyonde">
+              <input type="radio" id="alignNone_mangaOyonde" name="imgAlign_mangaOyonde" value="none" checked>
+              Tidak ada
+            </label>
+            <label for="alignLeft_mangaOyonde">
+              <input type="radio" id="alignLeft_mangaOyonde" name="imgAlign_mangaOyonde" value="left">
+              Kiri
+            </label>
+            <label for="alignCenter_mangaOyonde">
+              <input type="radio" id="alignCenter_mangaOyonde" name="imgAlign_mangaOyonde" value="center">
+              Tengah
+            </label>
+            <label for="alignRight_mangaOyonde">
+              <input type="radio" id="alignRight_mangaOyonde" name="imgAlign_mangaOyonde" value="right">
+              Kanan
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" id="uploadImgbbBtn_mangaOyonde" class="upload-btn-mangaOyonde">Unggah Gambar ke ImgBB</button>
+      <div id="imgbbPreview_mangaOyonde" style="margin-top: 10px; text-align: center; color: var(--mo-text-muted);"></div>
+    </div>
+    
+    <div class="form-group-mangaOyonde" style="border-top: 1px solid var(--mo-border); padding-top: 20px; margin-top: 20px;">
+      <label for="postLabels_mangaOyonde">Label (pisahkan dengan koma):</label>
+      <input type="text" id="postLabels_mangaOyonde" placeholder="contoh: Manga, Review, Horor">
+    </div>
+
+    <div class="form-group-mangaOyonde">
+      <label>Opsi Publikasi:</label>
+      <div class="radio-group">
+        <label for="publishNow_mangaOyonde">
+          <input type="radio" id="publishNow_mangaOyonde" name="publishOption_mangaOyonde" value="now" checked>
+          Publikasi Sekarang
+        </label>
+        <label for="scheduleCustom_mangaOyonde">
+          <input type="radio" id="scheduleCustom_mangaOyonde" name="publishOption_mangaOyonde" value="customRelative">
+          Jadwalkan Kustom:
+        </label>
+        <select id="scheduleTime_mangaOyonde" disabled>
+          <option value="">Pilih interval</option>
+          <option value="5">Setelah 5 Menit</option>
+          <option value="10">Setelah 10 Menit</option>
+          <option value="15">Setelah 15 Menit</option>
+          <option value="30">Setelah 30 Menit</option>
+          <option value="60">Setelah 1 Jam</option>
+          <option value="90">Setelah 1 Jam 30 Menit</option>
+          <option value="120">Setelah 2 Jam</option>
+          <option value="180">Setelah 3 Jam</option>
+          <option value="240">Setelah 4 Jam</option>
+          <option value="300">Setelah 5 Jam</option>
+          <option value="360">Setelah 6 Jam</option>
+        </select>
+        <label for="scheduleAbsolute_mangaOyonde">
+          <input type="radio" id="scheduleAbsolute_mangaOyonde" name="publishOption_mangaOyonde" value="customAbsolute">
+          Setel Tanggal dan Waktu:
+        </label>
+        <input type="date" id="customPublishDate_mangaOyonde" disabled style="width: auto; margin-right: 5px;">
+        <input type="time" id="customPublishTime_mangaOyonde" disabled style="width: auto;">
+      </div>
+    </div>
+
+    <div class="form-group-mangaOyonde">
+      <label for="postPermalink_mangaOyonde">Permalink Kustom (opsional, tidak berlaku saat pembuatan):</label>
+      <input type="text" id="postPermalink_mangaOyonde" placeholder="contoh: nama-postingan-unik">
+      <small style="display: block; margin-top: 5px; color: var(--mo-text-muted);">Kosongkan untuk permalink otomatis dari Blogger. Permalink kustom tidak didukung langsung oleh API saat membuat post.</small>
+    </div>
+
+    <div class="form-group-mangaOyonde">
+      <label for="searchDescription_mangaOyonde">Deskripsi Penelusuran (maks 150 karakter):</label>
+      <textarea id="searchDescription_mangaOyonde" rows="3" maxlength="150" placeholder="Deskripsi singkat untuk mesin pencari"></textarea>
+      <span id="charCount_mangaOyonde" style="display: block; text-align: right; font-size: 0.8em; color: var(--mo-text-muted);">0/150</span>
+    </div>
+
+    <div class="form-group-mangaOyonde">
+      <label>Komentar Pembaca:</label>
+      <div class="radio-group">
+        <label for="commentsAllow_mangaOyonde">
+          <input type="radio" id="commentsAllow_mangaOyonde" name="commentOption_mangaOyonde" value="allow" checked>
+          Izinkan
+        </label>
+        <label for="commentsHideExisting_mangaOyonde">
+          <input type="radio" id="commentsHideExisting_mangaOyonde" name="commentOption_mangaOyonde" value="hideExisting">
+          Jangan izinkan, sembunyikan yang telah ada
+        </label>
+        <label for="commentsShowExisting_mangaOyonde">
+          <input type="radio" id="commentsShowExisting_mangaOyonde" name="commentOption_mangaOyonde" value="showExisting">
+          Jangan izinkan, tampilkan yang telah ada
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" id="createPostBtn_mangaOyonde">Memuat Aplikasi...</button>
+    <div id="statusMessage_mangaOyonde" style="display: none;"></div>
+  </form>
+
+  <div style="margin-top: 20px; text-align: center;">
+    <button type="button" id="googleAuthButton_mangaOyonde" class="primary-btn-mangaOyonde">Memuat Otorisasi...</button>
+  </div>
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async defer onload="onGisScriptLoad()"></script>
+<script src="https://apis.google.com/js/api.js" async defer onload="onGapiScriptLoad()"></script>
+
+<script>
+  let tokenClient;
+  let currentAccessToken = null;
+  let isBloggerApiLoaded = false;
+  let isGsiScriptLoaded = false;
+  let isGapiScriptLoaded = false;
+  let appInitializationAttempted = false;
+
+  const CLIENT_ID = 'CLIENT_ID_ANDA_DI_SINI';
+  const BLOG_ID = 'BLOG_ID_ANDA_DI_SINI';
+  const SCOPES = 'https://www.googleapis.com/auth/blogger';
+  const IMGBB_API_KEYS = [
+    'KUNCI_IMGBB_ANDA_1',
+    'KUNCI_IMGBB_ANDA_2',
+    'KUNCI_IMGBB_ANDA_3',
+    'KUNCI_IMGBB_ANDA_4',
+    'KUNCI_IMGBB_ANDA_5',
+  ];
+  const IMGBB_UPLOAD_URL = 'https://api.imgbb.com/1/upload';
+  let currentImgbbKeyIndex = 0;
+
+  function getImgbbApiKey() {
+    if (IMGBB_API_KEYS.length === 0) {
+      return null;
+    }
+    const key = IMGBB_API_KEYS[currentImgbbKeyIndex];
+    currentImgbbKeyIndex = (currentImgbbKeyIndex + 1) % IMGBB_API_KEYS.length;
+    return key;
+  }
+
+  function showStatus(message, type = 'info') {
+    const statusMessageDiv = document.getElementById('statusMessage_mangaOyonde');
+    if (statusMessageDiv) {
+      statusMessageDiv.innerHTML = message;
+      statusMessageDiv.className = 'status-message-mangaOyonde ' + type;
+      statusMessageDiv.style.display = 'block';
+      setTimeout(() => {
+        statusMessageDiv.style.display = 'none';
+        statusMessageDiv.innerHTML = '';
+      }, 7000);
+    } else {
+      console.warn('Elemen pesan status tidak ditemukan:', message);
+    }
+  }
+
+  function onGisScriptLoad() {
+    console.log('Google Identity Services script berhasil dimuat.');
+    isGsiScriptLoaded = true;
+    checkAndInitializeApplication();
+  }
+
+  function onGapiScriptLoad() {
+    console.log('Google API Client script berhasil dimuat.');
+    isGapiScriptLoaded = true;
+    checkAndInitializeApplication();
+  }
+
+  function checkAndInitializeApplication() {
+    if (appInitializationAttempted) {
+      return;
+    }
+
+    if (!isGsiScriptLoaded || !isGapiScriptLoaded) {
+      console.log('checkAndInitializeApplication: Menunggu script Google lengkap. isGSI:', isGsiScriptLoaded, 'isGAPI:', isGapiLoaded);
+      updateUiState();
+      return;
+    }
+
+    appInitializationAttempted = true;
+    console.log('checkAndInitializeApplication: Semua script Google siap. Memulai inisialisasi aplikasi.');
+    initializeApplication();
+  }
+
+  async function initializeApplication() {
+    console.log('initializeApplication: Memulai proses inisialisasi utama...');
+
+    if (!CLIENT_ID || CLIENT_ID === 'CLIENT_ID_ANDA_DI_SINI') {
+      showStatus('Error: Client ID belum disetel atau menggunakan placeholder default di kode. Harap periksa kode.', 'error');
+      console.error('Client ID is not set or default!');
+      document.getElementById('createPostBtn_mangaOyonde').disabled = true;
+      document.getElementById('googleAuthButton_mangaOyonde').disabled = true;
+      return;
+    }
+    if (!BLOG_ID || BLOG_ID === 'BLOG_ID_ANDA_DI_SINI') {
+      showStatus('Error: Blog ID belum disetel atau menggunakan placeholder default di kode. Harap periksa kode.', 'error');
+      console.error('Blog ID is not set or default!');
+      document.getElementById('createPostBtn_mangaOyonde').disabled = true;
+      document.getElementById('googleAuthButton_mangaOyonde').disabled = true;
+      return;
+    }
+    
+    if (IMGBB_API_KEYS.length === 0 || IMGBB_API_KEYS[0] === 'KUNCI_IMGBB_ANDA_1') {
+        showStatus('Peringatan: ImgBB API Key belum disetel atau menggunakan placeholder default di kode. Fitur unggah gambar tidak akan berfungsi.', 'warning');
+        console.warn('ImgBB API Keys not set or default!');
+        document.getElementById('uploadImgbbBtn_mangaOyonde').disabled = true;
+    } else {
+        document.getElementById('uploadImgbbBtn_mangaOyonde').disabled = false;
+    }
+
+    if (typeof google !== 'undefined' && typeof google.accounts !== 'undefined' && typeof google.accounts.oauth2 !== 'undefined') {
+      console.log('initializeApplication: Menginisialisasi GSI tokenClient...');
+      tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: (tokenResponse) => {
+          console.log('GSI Callback dipanggil. Respon token:', tokenResponse);
+          if (tokenResponse && tokenResponse.access_token) {
+            currentAccessToken = tokenResponse.access_token;
+            console.log('Access Token berhasil didapatkan:', currentAccessToken ? 'Ya' : 'Tidak');
+            if (gapi && gapi.client) {
+              gapi.client.setToken({ access_token: currentAccessToken });
+              showStatus('Otorisasi Google berhasil didapatkan!', 'success');
+              updateUiState();
+              if (pendingPostCreation) {
+                pendingPostCreation = false;
+                createPost();
+              }
+            } else {
+              console.warn('gapi.client belum siap saat token diterima. Menunggu GAPI.');
+              showStatus('Otorisasi berhasil, menunggu Google API Client.', 'info');
+              updateUiState();
+            }
+          } else {
+            currentAccessToken = null;
+            showStatus('Otorisasi Google dibatalkan atau gagal.', 'error');
+            console.error('Gagal mendapatkan token akses. Respon:', tokenResponse);
+            updateUiState();
+          }
+        },
+        error_callback: (error) => {
+          console.error('GSI Token client error (error_callback):', error);
+          showStatus('Terjadi kesalahan saat otorisasi: ' + (error.error || JSON.stringify(error)), 'error');
+          updateUiState();
+        }
+      });
+      
+      console.log('initializeApplication: Mencoba mendapatkan token akses secara pasif...');
+      tokenClient.requestAccessToken({ prompt: 'none' });
+
+    } else {
+      console.error('initializeApplication: Google Identity Services (GSI) tidak dapat diakses. Mungkin script GSI belum dimuat atau ada masalah.');
+      showStatus('Gagal memuat Google Identity Services. Periksa konsol.', 'error');
+      document.getElementById('createPostBtn_mangaOyonde').disabled = true;
+      document.getElementById('googleAuthButton_mangaOyonde').disabled = true;
+      return;
+    }
+
+    if (typeof gapi !== 'undefined' && typeof gapi.load === 'function') {
+      gapi.load('client', async () => {
+        console.log('initializeApplication: gapi.client siap. Mencoba memuat Blogger API client (gapi.client.blogger) via shorthand...');
+        try {
+          await gapi.client.load('blogger', 'v3');
+          console.log('initializeApplication: Blogger API client (gapi.client.blogger) berhasil dimuat. isBloggerApiLoaded = true;');
+          isBloggerApiLoaded = true;
+          updateUiState();
+        } catch (error) {
+          let errorMessage = 'Gagal memuat Blogger API client.';
+          console.error("initializeApplication: Error loading Blogger API client (from gapi.client.load catch):", error);
+          if (error.status === 403) {
+            errorMessage += " (Akses Ditolak. Pastikan Blogger API diaktifkan di Google Cloud Console dan Client ID Anda dikonfigurasi dengan benar.)";
+          } else if (error.message) {
+            errorMessage += " Pesan: " + error.message;
+          } else if (error.result && error.result.error && error.result.error.message) {
+                errorMessage += " Pesan Error API: " + error.result.error.message;
+          } else {
+            errorMessage += " Error JSON: " + JSON.stringify(error);
+          }
+          showStatus(errorMessage + ' Periksa konsol.', 'error');
+          document.getElementById('createPostBtn_mangaOyonde').disabled = true;
+          document.getElementById('googleAuthButton_mangaOyonde').disabled = true;
+        }
+      });
+    } else {
+      console.error('initializeApplication: Google API Client (gapi) tidak dapat diakses atau fungsi gapi.load tidak ditemukan.');
+      showStatus('Gagal memuat Google API Client. Periksa konsol.', 'error');
+      document.getElementById('createPostBtn_mangaOyonde').disabled = true;
+      document.getElementById('googleAuthButton_mangaOyonde').disabled = true;
+    }
+
+    updateUiState();
+  }
+
+  function updateUiState() {
+    const createPostBtn = document.getElementById('createPostBtn_mangaOyonde');
+    const googleAuthButton = document.getElementById('googleAuthButton_mangaOyonde');
+
+    if (!createPostBtn || !googleAuthButton) return;
+
+    const appReady = isGsiScriptLoaded && isGapiScriptLoaded && isBloggerApiLoaded && typeof tokenClient !== 'undefined';
+    const userAuthorized = !!currentAccessToken;
+
+    if (!appReady) {
+      createPostBtn.textContent = 'Memuat Aplikasi...';
+      createPostBtn.disabled = true;
+      googleAuthButton.textContent = 'Memuat Otorisasi...';
+      googleAuthButton.disabled = true;
+    } else if (!userAuthorized) {
+      createPostBtn.textContent = 'Buat Postingan';
+      createPostBtn.disabled = true;
+      googleAuthButton.textContent = 'Hubungkan Akun Google';
+      googleAuthButton.disabled = false;
+      googleAuthButton.classList.remove('danger-btn-mangaOyonde');
+      googleAuthButton.classList.add('primary-btn-mangaOyonde');
+      showStatus('Aplikasi siap. Silakan hubungkan akun Google Anda.', 'info');
+    } else {
+      createPostBtn.textContent = 'Buat Postingan';
+      createPostBtn.disabled = false;
+      googleAuthButton.textContent = 'Logout dari Google';
+      googleAuthButton.disabled = false;
+      googleAuthButton.classList.remove('primary-btn-mangaOyonde');
+      googleAuthButton.classList.add('danger-btn-mangaOyonde');
+      showStatus('Anda terhubung sebagai ' + (gapi.client.getToken()?.access_token ? 'Pengguna Terotorisasi' : 'Sesi Pasif') + '.', 'success');
+    }
+    console.log('UI State:', { appReady, userAuthorized, isGsiScriptLoaded, isGapiScriptLoaded, isBloggerApiLoaded, hasToken: !!currentAccessToken });
+  }
+
+  function handleAuthClick() {
+    if (!CLIENT_ID || CLIENT_ID === 'CLIENT_ID_ANDA_DI_SINI') {
+      showStatus('Error: Client ID belum disetel di kode. Harap periksa bagian KONSTANTA KONFIGURASI API PRIBADI ANDA.', 'error');
+      return;
+    }
+
+    if (!isGsiScriptLoaded || !isGapiScriptLoaded || !isBloggerApiLoaded || typeof tokenClient === 'undefined') {
+        showStatus('Aplikasi belum sepenuhnya siap. Harap tunggu sebentar.', 'info');
+        console.log('Attempted auth click before app fully ready.');
+        return;
+    }
+
+    if (!currentAccessToken) {
+      console.log('Memicu permintaan token akses GSI (interaktif)...');
+      tokenClient.requestAccessToken();
+    } else {
+      console.log('Sudah terotorisasi, melakukan logout.');
+      google.accounts.oauth2.revoke(currentAccessToken, () => {
+        currentAccessToken = null;
+        showStatus('Anda telah berhasil logout.', 'info');
+        updateUiState();
+      });
+    }
+  }
+
+  async function createPost(event) {
+    event.preventDefault();
+
+    console.log('Memulai proses pembuatan postingan...');
+    const createPostBtn = document.getElementById('createPostBtn_mangaOyonde');
+
+    if (!currentAccessToken || !isBloggerApiLoaded || !gapi.client.blogger) {
+      showStatus('Aplikasi belum sepenuhnya siap atau otorisasi diperlukan. Coba hubungkan akun Google Anda terlebih dahulu.', 'error');
+      console.warn('Percobaan membuat postingan tanpa token atau API yang dimuat.');
+      return;
+    }
+
+    const postTitleInput = document.getElementById('postTitle_mangaOyonde');
+    const postContentInput = document.getElementById('postContent_mangaOyonde');
+    const postLabelsInput = document.getElementById('postLabels_mangaOyonde');
+    const publishNowRadio = document.getElementById('publishNow_mangaOyonde');
+    const scheduleCustomRadio = document.getElementById('scheduleCustom_mangaOyonde');
+    const scheduleAbsoluteRadio = document.getElementById('scheduleAbsolute_mangaOyonde');
+    const customPublishDateInput = document.getElementById('customPublishDate_mangaOyonde');
+    const customPublishTimeInput = document.getElementById('customPublishTime_mangaOyonde');
+    const scheduleTimeSelect = document.getElementById('scheduleTime_mangaOyonde');
+    const searchDescriptionInput = document.getElementById('searchDescription_mangaOyonde');
+
+    const title = postTitleInput.value.trim();
+    let content = '';
+    const labels = postLabelsInput.value.split(',').map(label => label.trim()).filter(label => label !== '');
+    const searchDescription = searchDescriptionInput.value.trim();
+
+    if (document.getElementById('viewHtml_mangaOyonde').checked) {
+      content = postContentInput.value;
+    } else {
+      content = document.getElementById('composeContent_mangaOyonde').innerHTML;
+    }
+
+    if (!title) { showStatus('Judul postingan tidak boleh kosong!', 'error'); return; }
+    if (!content) { showStatus('Isi Konten postingan tidak boleh kosong!', 'error'); return; }
+
+    let publishedDate = new Date();
+
+    if (scheduleCustomRadio.checked) {
+      const minutesToAdd = parseInt(scheduleTimeSelect.value);
+      if (isNaN(minutesToAdd) || minutesToAdd <= 0) {
+        showStatus('Pilih interval penjadwalan yang valid untuk opsi kustom.', 'error');
+        return;
+      }
+      publishedDate.setMinutes(publishedDate.getMinutes() + minutesToAdd);
+      console.log(`Postingan akan dijadwalkan pada: ${publishedDate.toLocaleString()}`);
+    } else if (scheduleAbsoluteRadio.checked) {
+      const dateValue = customPublishDateInput.value;
+      const timeValue = customPublishTimeInput.value;
+
+      if (!dateValue || !timeValue) {
+        showStatus('Harap setel tanggal dan waktu publikasi kustom.', 'error');
+        return;
+      }
+
+      publishedDate = new Date(`${dateValue}T${timeValue}:00`);
+      if (isNaN(publishedDate.getTime())) {
+        showStatus('Tanggal atau waktu yang disetel tidak valid.', 'error');
+        return;
+      }
+      console.log(`Postingan akan dijadwalkan pada: ${publishedDate.toLocaleString()}`);
+    } else {
+      console.log(`Postingan akan dipublikasikan sekarang: ${publishedDate.toLocaleString()}`);
+    }
+
+    let commentsAllowed = true;
+    if (document.getElementById('commentsHideExisting_mangaOyonde').checked ||
+        document.getElementById('commentsShowExisting_mangaOyonde').checked) {
+      commentsAllowed = false;
+    }
+    console.log('Komentar diizinkan:', commentsAllowed);
+
+    const postBody = {
+      kind: 'blogger#post',
+      blog: { id: BLOG_ID },
+      title: title,
+      content: content,
+      labels: labels.length > 0 ? labels : undefined,
+      published: publishedDate.toISOString(),
+      comments: commentsAllowed,
+    };
+
+    console.log('Payload API (Create):', postBody);
+    showStatus('Sedang membuat postingan...', 'info');
+    createPostBtn.disabled = true;
+
+    try {
+      const response = await gapi.client.blogger.posts.insert({
+        blogId: BLOG_ID,
+        resource: postBody,
+        isDraft: false
+      });
+
+      if (response.status === 200) {
+        const postUrl = response.result.url;
+        const postId = response.result.id;
+
+        if (searchDescription) {
+          showStatus('Postingan berhasil dibuat, sedang menambahkan deskripsi penelusuran...', 'success');
+          try {
+            const updateResponse = await gapi.client.blogger.posts.patch({
+              blogId: BLOG_ID,
+              postId: postId,
+              resource: {
+                customMetaData: {
+                  searchDescription: searchDescription
+                }
+              }
+            });
+            if (updateResponse.status === 200) {
+              showStatus('Postingan berhasil dibuat dan deskripsi penelusuran ditambahkan! URL: <a href="' + postUrl + '" target="_blank" class="status-link-mangaOyonde">' + postUrl + '</a>', 'success');
+              console.log('Deskripsi penelusuran berhasil ditambahkan:', updateResponse.result);
+            } else {
+              showStatus('Postingan berhasil dibuat, namun gagal menambahkan deskripsi penelusuran. URL: <a href="' + postUrl + '" target="_blank" class="status-link-mangaOyonde">' + postUrl + '</a>', 'error');
+              console.error('Gagal menambahkan deskripsi penelusuran:', updateResponse);
+            }
+          } catch (updateError) {
+            showStatus('Postingan berhasil dibuat, namun error saat menambahkan deskripsi penelusuran. URL: <a href="' + postUrl + '" target="_blank" class="status-link-mangaOyonde">' + postUrl + '</a>', 'error');
+            console.error('Error saat update deskripsi penelusuran:', updateError);
+          }
+        } else {
+          showStatus('Postingan berhasil dibuat! URL: <a href="' + postUrl + '" target="_blank" class="status-link-mangaOyonde">' + postUrl + '</a>', 'success');
+        }
+
+        console.log('Postingan berhasil dibuat:', response.result);
+        const postForm = document.getElementById('postForm_mangaOyonde');
+        if(postForm) {
+          document.getElementById('postContent_mangaOyonde').value = '';
+          document.getElementById('composeContent_mangaOyonde').innerHTML = '';
+          document.getElementById('searchDescription_mangaOyonde').value = '';
+          document.getElementById('charCount_mangaOyonde').textContent = '0/150';
+          document.getElementById('postPermalink_mangaOyonde').value = '';
+        }
+        scheduleTimeSelect.disabled = true;
+        publishNowRadio.checked = true;
+        document.getElementById('customPublishDate_mangaOyonde').disabled = true;
+        document.getElementById('customPublishTime_mangaOyonde').disabled = true;
+      } else {
+        let errorMessage = 'Terjadi kesalahan tidak diketahui.';
+        if (response.result && response.result.error && response.result.error.message) {
+          errorMessage = response.result.error.message;
+        } else if (response.body) {
+          try {
+            const errorBody = JSON.parse(response.body);
+            if (errorBody.error && errorBody.error.message) {
+              errorMessage = errorBody.error.message;
+            }
+          } catch (e) { /* ignore */ }
+        }
+        showStatus('Gagal membuat postingan: ' + errorMessage, 'error');
+        console.error('Error saat membuat postingan:', response);
+      }
+    } catch (error) {
+      let errorMessage = 'Terjadi kesalahan saat berkomunikasi dengan Blogger API.';
+      if (error.result && error.result.error && error.result.error.message) {
+        errorMessage = error.result.error.message;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      showStatus('Error: ' + errorMessage, 'error');
+      console.error('API call error:', error);
+    } finally {
+      createPostBtn.disabled = false;
+      updateUiState();
+    }
+  }
+
+  async function handleImgbbUpload() {
+    const imgbbFileInput = document.getElementById('imgbbFileInput_mangaOyonde');
+    const uploadImgbbBtn = document.getElementById('uploadImgbbBtn_mangaOyonde');
+    const imgbbPreviewDiv = document.getElementById('imgbbPreview_mangaOyonde');
+    const postContentInput = document.getElementById('postContent_mangaOyonde');
+    const composeContentDiv = document.getElementById('composeContent_mangaOyonde');
+    const viewHtmlRadio = document.getElementById('viewHtml_mangaOyonde');
+    const imgSizeSelect = document.getElementById('imgSize_mangaOyonde');
+    const imgAlignRadios = document.getElementsByName('imgAlign_mangaOyonde');
+    const imgbbFileNameDisplay = document.getElementById('imgbbFileName_mangaOyonde');
+
+    const files = imgbbFileInput.files;
+    if (files.length === 0) {
+      showStatus('Pilih file gambar terlebih dahulu.', 'warning');
+      return;
+    }
+
+    if (IMGBB_API_KEYS.length === 0) {
+      showStatus('Error: Tidak ada API key ImgBB yang disetel di konfigurasi.', 'error');
+      return;
+    }
+
+    uploadImgbbBtn.disabled = true;
+    uploadImgbbBtn.textContent = `Mengunggah (0/${files.length})...`;
+    showStatus(`Mengunggah ${files.length} gambar ke ImgBB...`, 'info');
+    imgbbPreviewDiv.innerHTML = 'Memproses unggahan...';
+
+    let uploadedCount = 0;
+    let allEmbedTags = '';
+
+    for (const file of files) {
+      try {
+        const base64Image = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            resolve(reader.result.split(',')[1]);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+
+        const formData = new FormData();
+        formData.append('image', base64Image);
+        
+        const imgbbApiKey = getImgbbApiKey();
+        if (!imgbbApiKey) {
+          throw new Error('Tidak ada API key ImgBB yang dapat digunakan dari daftar yang tersedia.');
+        }
+        console.log(`Mengunggah file: ${file.name} menggunakan ImgBB API Key Index: ${(currentImgbbKeyIndex - 1 + IMGBB_API_KEYS.length) % IMGBB_API_KEYS.length}`);
+
+        const response = await fetch(`${IMGBB_UPLOAD_URL}?key=${imgbbApiKey}`, {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.data && result.data.url) {
+          const imageUrl = result.data.url;
+          const originalWidth = result.data.width;
+          const originalHeight = result.data.height;
+
+          const selectedSize = imgSizeSelect.value;
+          let selectedAlignment = 'none';
+          for (const radio of imgAlignRadios) {
+            if (radio.checked) {
+              selectedAlignment = radio.value;
+              break;
+            }
+          }
+
+          let imgHeightAttr = '';
+          switch (selectedSize) {
+            case 'small': imgHeightAttr = 'height="200"'; break;
+            case 'medium': imgHeightAttr = 'height="320"'; break;
+            case 'large': imgHeightAttr = 'height="400"'; break;
+            case 'extralarge': imgHeightAttr = 'height="600"'; break;
+            case 'original':
+            default: imgHeightAttr = ''; break;
+          }
+
+          let separatorStyle = 'clear: both;';
+          let aStyle = 'display: block; padding: 1em 0;';
+          let imgStyle = 'max-width: 100%; height: auto; border-radius: 6px;';
+
+          if (selectedAlignment === 'center' || selectedAlignment === 'none') {
+            aStyle += ' text-align: center;';
+          } else if (selectedAlignment === 'left') {
+            separatorStyle += ' clear: left; float: left; margin-right: 1em;';
+            aStyle += ' text-align: left;';
+          } else if (selectedAlignment === 'right') {
+            separatorStyle += ' clear: right; float: right; margin-left: 1em;';
+            aStyle += ' text-align: right;';
+          }
+
+          const embedTag = `
+<div class="separator" style="${separatorStyle}">
+  <a href="${imageUrl}" style="${aStyle}">
+    <img alt="${file.name || 'Gambar Unggahan'}" border="0" ${imgHeightAttr} data-original-height="${originalHeight}" data-original-width="${originalWidth}" src="${imageUrl}" style="${imgStyle}"/>
+  </a>
+</div>`;
+          allEmbedTags += embedTag;
+          uploadedCount++;
+          uploadImgbbBtn.textContent = `Mengunggah (${uploadedCount}/${files.length})...`;
+          showStatus(`Mengunggah gambar ${uploadedCount} dari ${files.length}...`, 'info');
+
+        } else {
+          let errorMessage = result.error?.message || `Gagal mengunggah ${file.name}.`;
+          throw new Error(errorMessage);
+        }
+
+      } catch (error) {
+        showStatus(`Error saat unggah ${file.name}: ${error.message}`, 'error');
+        console.error(`ImgBB upload error for ${file.name}:`, error);
+      }
+    }
+
+    if (allEmbedTags) {
+      if (document.getElementById('viewHtml_mangaOyonde').checked) {
+        const currentContent = postContentInput.value;
+        const cursorPosition = postContentInput.selectionStart;
+        const newContent = [currentContent.slice(0, cursorPosition), allEmbedTags, currentContent.slice(cursorPosition)].join('');
+        postContentInput.value = newContent;
+      } else {
+        const selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+          const range = selection.getRangeAt(0);
+          range.deleteContents();
+          const div = document.createElement('div');
+          div.innerHTML = allEmbedTags;
+          while (div.firstChild) {
+            range.insertNode(div.firstChild);
+          }
+          range.collapse(false);
+          selection.removeAllRanges();
+          selection.addRange(range);
+        } else {
+          composeContentDiv.innerHTML += allEmbedTags;
+        }
+        postContentInput.value = composeContentDiv.innerHTML;
+      }
+      imgbbPreviewDiv.innerHTML = `<p>Unggahan Selesai. Total ${uploadedCount} gambar berhasil disematkan.</p>`;
+      showStatus(`Berhasil mengunggah dan menyematkan ${uploadedCount} dari ${files.length} gambar!`, 'success');
+    } else {
+      showStatus('Tidak ada gambar yang berhasil diunggah atau disematkan.', 'error');
+      imgbbPreviewDiv.innerHTML = '';
+    }
+
+    uploadImgbbBtn.disabled = false;
+    uploadImgbbBtn.textContent = 'Unggah Gambar ke ImgBB';
+    imgbbFileInput.value = '';
+    imgbbFileNameDisplay.textContent = 'Tidak ada file dipilih';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const postTitleInput = document.getElementById('postTitle_mangaOyonde');
+    const postLabelsInput = document.getElementById('postLabels_mangaOyonde');
+    const googleAuthButton = document.getElementById('googleAuthButton_mangaOyonde');
+    const postContentInput = document.getElementById('postContent_mangaOyonde');
+    const composeContentDiv = document.getElementById('composeContent_mangaOyonde');
+    const viewHtmlRadio = document.getElementById('viewHtml_mangaOyonde');
+    const viewComposeRadio = document.getElementById('viewCompose_mangaOyonde');
+    const publishNowRadio = document.getElementById('publishNow_mangaOyonde');
+    const scheduleCustomRadio = document.getElementById('scheduleCustom_mangaOyonde');
+    const scheduleAbsoluteRadio = document.getElementById('scheduleAbsolute_mangaOyonde');
+    const customPublishDateInput = document.getElementById('customPublishDate_mangaOyonde');
+    const customPublishTimeInput = document.getElementById('customPublishTime_mangaOyonde');
+    const scheduleTimeSelect = document.getElementById('scheduleTime_mangaOyonde');
+    const searchDescriptionInput = document.getElementById('searchDescription_mangaOyonde');
+    const charCountSpan = document.getElementById('charCount_mangaOyonde');
+    const postForm = document.getElementById('postForm_mangaOyonde');
+    const uploadImgbbBtn = document.getElementById('uploadImgbbBtn_mangaOyonde');
+    const imgbbFileInput = document.getElementById('imgbbFileInput_mangaOyonde');
+    const imgbbFileNameDisplay = document.getElementById('imgbbFileName_mangaOyonde');
+
+    function loadPostDataFromLocalStorage() {
+      console.log('Memuat data postingan dari localStorage...');
+      const savedTitle = localStorage.getItem('bloggerAppSavedTitle');
+      const savedLabels = localStorage.getItem('bloggerAppSavedLabels');
+      const savedPublishOptionType = localStorage.getItem('bloggerAppPublishOptionType');
+      const savedScheduleTimeValue = localStorage.getItem('bloggerAppScheduleTimeValue');
+      const savedCustomPublishDate = localStorage.getItem('bloggerAppCustomPublishDate');
+      const savedCustomPublishTime = localStorage.getItem('bloggerAppCustomPublishTime');
+
+      if (postTitleInput && savedTitle) {
+        postTitleInput.value = savedTitle;
+      }
+      if (postLabelsInput && savedLabels) {
+        postLabelsInput.value = savedLabels;
+      }
+
+      if (savedPublishOptionType) {
+        const radioToSelect = document.getElementById(savedPublishOptionType + '_mangaOyonde');
+        if (radioToSelect) {
+          radioToSelect.checked = true;
+          updatePublishOptionInputs();
+        }
+      }
+
+      if (savedScheduleTimeValue && scheduleTimeSelect) {
+        scheduleTimeSelect.value = savedScheduleTimeValue;
+      }
+      if (savedCustomPublishDate && customPublishDateInput) {
+        customPublishDateInput.value = savedCustomPublishDate;
+      }
+      if (savedCustomPublishTime && customPublishTimeInput) {
+        customPublishTimeInput.value = savedCustomPublishTime;
+      }
+
+      console.log('Data postingan dimuat. Judul:', savedTitle ? 'Loaded' : 'Empty', 'Label:', savedLabels ? 'Loaded' : 'Empty', 'Opsi Publikasi:', savedPublishOptionType || 'Default');
+    }
+    
+    function savePostDataToLocalStorage() {
+      if (postTitleInput) {
+        localStorage.setItem('bloggerAppSavedTitle', postTitleInput.value.trim());
+      }
+      if (postLabelsInput) {
+        localStorage.setItem('bloggerAppSavedLabels', postLabelsInput.value.trim());
+      }
+
+      const selectedPublishOption = document.querySelector('input[name="publishOption_mangaOyonde"]:checked');
+      if (selectedPublishOption) {
+        localStorage.setItem('bloggerAppPublishOptionType', selectedPublishOption.id.replace('_mangaOyonde', ''));
+        if (selectedPublishOption.value === 'customRelative') {
+          localStorage.setItem('bloggerAppScheduleTimeValue', scheduleTimeSelect.value);
+        } else {
+          localStorage.removeItem('bloggerAppScheduleTimeValue');
+        }
+        if (selectedPublishOption.value === 'customAbsolute') {
+          localStorage.setItem('bloggerAppCustomPublishDate', customPublishDateInput.value);
+          localStorage.setItem('bloggerAppCustomPublishTime', customPublishTimeInput.value);
+        } else {
+          localStorage.removeItem('bloggerAppCustomPublishTime');
+          localStorage.removeItem('bloggerAppCustomPublishDate');
+        }
+      }
+    }
+
+    if (postTitleInput) {
+      postTitleInput.addEventListener('input', savePostDataToLocalStorage);
+    }
+    if (postLabelsInput) {
+      postLabelsInput.addEventListener('input', savePostDataToLocalStorage);
+    }
+
+    function updateContentView() {
+      if (viewHtmlRadio.checked) {
+        postContentInput.style.display = 'block';
+        composeContentDiv.style.display = 'none';
+        postContentInput.value = composeContentDiv.innerHTML;
+      } else {
+        postContentInput.style.display = 'none';
+        composeContentDiv.style.display = 'block';
+        composeContentDiv.innerHTML = postContentInput.value;
+      }
+    }
+
+    if (viewHtmlRadio) {
+      viewHtmlRadio.addEventListener('change', updateContentView);
+    }
+    if (viewComposeRadio) {
+      viewComposeRadio.addEventListener('change', updateContentView);
+    }
+
+    if (composeContentDiv) {
+      composeContentDiv.addEventListener('input', () => {
+        if (viewComposeRadio.checked) {
+          postContentInput.value = composeContentDiv.innerHTML;
+        }
+      });
+    }
+
+    updateContentView();
+
+    function updatePublishOptionInputs() {
+      scheduleTimeSelect.disabled = true;
+      customPublishDateInput.disabled = true;
+      customPublishTimeInput.disabled = true;
+
+      if (scheduleCustomRadio.checked) {
+        scheduleTimeSelect.disabled = false;
+      } else if (scheduleAbsoluteRadio.checked) {
+        customPublishDateInput.disabled = false;
+        customPublishTimeInput.disabled = false;
+        if (!customPublishDateInput.value) {
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = (now.getMonth() + 1).toString().padStart(2, '0');
+          const day = now.getDate().toString().padStart(2, '0');
+          const hours = now.getHours().toString().padStart(2, '0');
+          const minutes = now.getMinutes().toString().padStart(2, '0');
+          customPublishDateInput.value = `${year}-${month}-${day}`;
+          customPublishTimeInput.value = `${hours}:${minutes}`;
+        }
+      }
+      savePostDataToLocalStorage();
+    }
+
+    publishNowRadio.addEventListener('change', updatePublishOptionInputs);
+    scheduleCustomRadio.addEventListener('change', updatePublishOptionInputs);
+    scheduleAbsoluteRadio.addEventListener('change', updatePublishOptionInputs);
+    scheduleTimeSelect.addEventListener('change', savePostDataToLocalStorage);
+    customPublishDateInput.addEventListener('change', savePostDataToLocalStorage);
+    customPublishTimeInput.addEventListener('change', savePostDataToLocalStorage);
+
+    loadPostDataFromLocalStorage();
+    updatePublishOptionInputs();
+    updateUiState();
+    checkAndInitializeApplication();
+    
+    if (searchDescriptionInput) {
+      searchDescriptionInput.addEventListener('input', function() {
+        charCountSpan.textContent = `${this.value.length}/150`;
+      });
+    }
+    if (postForm) {
+      postForm.addEventListener('submit', createPost);
+    }
+    if (googleAuthButton) {
+      googleAuthButton.addEventListener('click', handleAuthClick);
+    }
+    if (uploadImgbbBtn) {
+      uploadImgbbBtn.addEventListener('click', handleImgbbUpload);
+    }
+
+    if (imgbbFileInput) {
+      imgbbFileInput.addEventListener('change', () => {
+        if (imgbbFileInput.files.length > 0) {
+          if (imgbbFileInput.files.length === 1) {
+            imgbbFileNameDisplay.textContent = imgbbFileInput.files[0].name;
+          } else {
+            imgbbFileNameDisplay.textContent = `${imgbbFileInput.files.length} file dipilih`;
+          }
+        } else {
+          imgbbFileNameDisplay.textContent = 'Tidak ada file dipilih';
+        }
+      });
+    }
+  });
+</script>
