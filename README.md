@@ -1,1 +1,152 @@
-Posting-Postingan-Blogger-by-OAuth-2.0Antarmuka web kustom untuk postingan Blogger via Google OAuth 2.0. Memungkinkan pembuatan konten, unggah gambar ImgBB, dan mengatur label. Fitur penjadwalan cerdas (misal: "Setelah 5 Menit") membantu menghindari deteksi spam Blogger. Judul dan label otomatis tersimpan di localStorage untuk kemudahan. Alat efisien & aman bagi pengelola blog.Deskripsi LengkapProyek ini menyediakan sebuah aplikasi web mandiri yang dirancang untuk menyederhanakan proses pembuatan dan publikasi postingan di platform Blogger. Dengan antarmuka yang intuitif, Anda dapat menulis konten, mengelola label, dan mengunggah gambar langsung ke ImgBB, kemudian menyematkannya ke dalam postingan Anda.Fitur unggulan dari aplikasi ini adalah kemampuan penjadwalan postingan. Anda tidak hanya bisa mempublikasikan konten secara instan, tetapi juga menjadwalkannya untuk beberapa menit atau jam ke depan. Opsi penjadwalan ini sangat bermanfaat untuk strategi publikasi konten yang teratur dan membantu menghindari potensi deteksi spam oleh sistem Blogger, memungkinkan Anda menjaga alur postingan yang konsisten.Untuk meningkatkan pengalaman pengguna, aplikasi ini memanfaatkan localStorage browser. Ini berarti judul postingan dan label yang Anda masukkan akan otomatis tersimpan di browser Anda. Jadi, jika Anda tidak sengaja menutup halaman atau me-refresh, data tersebut akan tetap ada saat Anda kembali, menghemat waktu dan tenaga Anda.Dibangun dengan fondasi Google Blogger API dan sistem otentikasi Google OAuth 2.0, aplikasi ini menjamin bahwa semua operasi posting dilakukan dengan aman dan hanya dengan izin eksplisit dari akun Google Anda. Ini adalah solusi praktis bagi para pengelola blog Blogger yang menginginkan fleksibilitas dan kontrol lebih dalam mengelola konten mereka.Cara Menggunakan Aplikasi IniUntuk menggunakan aplikasi ini, Anda perlu melakukan beberapa konfigurasi awal di Google Cloud Console dan mendapatkan API key dari ImgBB.1. Konfigurasi Google Cloud Console (OAuth 2.0 & Blogger API)Aplikasi ini memerlukan akses ke Blogger API melalui akun Google Anda. Ikuti langkah-langkah berikut untuk menyiapkan kredensial OAuth 2.0:Kunjungi Google Cloud Console.Pilih atau Buat Proyek Baru:Jika Anda belum memiliki proyek, buatlah proyek baru. Beri nama yang mudah dikenali (misal: "Blogger Post Creator Project").Aktifkan Blogger API:Di menu navigasi kiri, pilih "APIs & Services" > "Library".Cari "Blogger API" dan klik.Klik tombol "Enable" untuk mengaktifkan API ini untuk proyek Anda.Buat Kredensial OAuth Client ID:Di menu navigasi kiri, pilih "APIs & Services" > "Credentials".Klik "+ Create Credentials" dan pilih "OAuth client ID".Pilih "Web application" sebagai Application type.Beri nama pada OAuth client ID Anda (misal: Blogger Poster Web Client).Di bagian "Authorized JavaScript origins", tambahkan URL blog Blogger Anda:Contoh: https://mangaoyonde.blogspot.comDi bagian "Authorized redirect URIs", tambahkan URL yang sama dengan "Authorized JavaScript origins":Contoh: https://mangaoyonde.blogspot.comKlik "Create".Anda akan melihat pop-up dengan Client ID Anda. Salin Client ID ini.Perbarui Kode HTML:Buka file blogger-post-creator.html yang Anda miliki.Cari baris const CLIENT_ID = 'CLIENT_ID_ANDA_DI_SINI';Ganti 'CLIENT_ID_ANDA_DI_SINI' dengan Client ID yang baru saja Anda salin.Cari baris const BLOG_ID = 'BLOG_ID_ANDA_DI_SINI';Ganti 'BLOG_ID_ANDA_DI_SINI' dengan ID Blog Blogger Anda. Anda bisa menemukan ID Blog di URL dashboard Blogger Anda (misal: https://www.blogger.com/blog/posts/BLOG_ID_ANDA_DI_SINI).2. Dapatkan ImgBB API Key (Opsional, untuk Fitur Unggah Gambar)Fitur unggah gambar ke ImgBB bersifat opsional. Jika Anda ingin menggunakannya, ikuti langkah-langkah berikut:Kunjungi ImgBB API.Daftar atau masuk ke akun Anda.Anda akan menemukan API Key pribadi Anda di halaman tersebut.Perbarui Kode HTML:Buka file blogger-post-creator.html.Cari array const IMGBB_API_KEYS = [...].Ganti placeholder seperti 'KUNCI_IMGBB_ANDA_1' dengan API Key ImgBB Anda. Anda bisa menambahkan beberapa kunci jika Anda memiliki lebih dari satu.3. Penempatan Kode di BloggerKode HTML dan JavaScript ini harus ditempatkan di sebuah "Halaman" (Page) di Blogger, bukan di postingan biasa. Ini karena halaman memiliki URL yang statis dan tidak akan muncul di feed utama blog Anda, menjadikannya lokasi yang ideal untuk alat seperti ini.Masuk ke Dashboard Blogger Anda.Pilih "Pages" (Halaman) dari menu kiri.Klik "New Page" (Halaman Baru).Beri judul halaman, misalnya "Blogger Post Creator" atau "Alat Posting Blogger".Di editor konten, pastikan Anda berada dalam mode "HTML view" (tampilan HTML), bukan "Compose view".Salin seluruh kode dari file blogger-post-creator.html dan tempelkan ke dalam editor HTML halaman tersebut.Simpan dan Publikasikan Halaman.Setelah halaman dipublikasikan, Anda dapat mengakses aplikasi pembuat postingan Anda melalui URL halaman tersebut (misal: https://mangaoyonde.blogspot.com/p/blogger-post-creator.html).Cara Menggunakan AplikasiAkses Halaman: Buka halaman Blogger tempat Anda menempelkan kode ini.Otorisasi Google: Klik tombol "Hubungkan Akun Google" untuk memberikan izin kepada aplikasi agar dapat memposting ke blog Anda. Anda hanya perlu melakukan ini sekali (atau ketika sesi Anda kedaluwarsa).Isi Detail Postingan:Judul: Masukkan judul postingan Anda.Isi Konten: Pilih "Tampilan HTML" untuk menulis dalam HTML, atau "Tampilan Menulis" untuk editor yang lebih visual.Unggah Gambar ke ImgBB: Pilih file gambar. Anda dapat mengatur ukuran dan perataan. Klik "Unggah Gambar ke ImgBB" untuk mendapatkan tautan gambar yang akan disematkan secara otomatis ke konten Anda.Label: Masukkan label postingan, pisahkan dengan koma.Opsi Publikasi: Pilih "Publikasi Sekarang" atau jadwalkan postingan Anda dengan opsi "Jadwalkan Kustom" (misal: setelah 5 menit, 10 menit, dst.) atau "Setel Tanggal dan Waktu" spesifik.Deskripsi Penelusuran: Tambahkan deskripsi singkat untuk mesin pencari (SEO).Komentar Pembaca: Atur apakah komentar diizinkan atau tidak.Buat Postingan: Klik tombol "Buat Postingan". Aplikasi akan memproses dan mempublikasikan postingan Anda ke Blogger.Selamat menggunakan alat posting Blogger kustom Anda!
+# 📝 Posting-Postingan-Blogger-by-OAuth-2.0
+
+Antarmuka web kustom untuk mempermudah pembuatan dan publikasi postingan Blogger via Google OAuth 2.0. Cocok untuk pengelola blog yang ingin efisien, aman, dan bebas ribet — lengkap dengan unggahan gambar ke ImgBB dan penjadwalan postingan cerdas.
+
+---
+
+## ✨ Fitur Utama
+
+* 🔐 **Login Aman via Google OAuth 2.0**
+* 🕊️ **Penulisan Konten HTML atau Visual**
+* 🍿️ **Manajemen Label Otomatis (localStorage)**
+* 🗓️ **Penjadwalan Cerdas (misal: "Setelah 5 Menit")**
+* 🖼️ **Unggah Gambar ke ImgBB**
+* 📆 **Deskripsi Penelusuran & Kontrol Komentar**
+* 💾 **Auto-Save Judul dan Label di localStorage**
+
+---
+
+## 📌 Deskripsi Proyek
+
+Aplikasi web mandiri yang dibangun di atas Google Blogger API dan otentikasi OAuth 2.0. Pengguna dapat:
+
+* Menulis konten secara langsung dari web
+* Menyisipkan gambar via ImgBB
+* Mengatur label dan metadata postingan
+* Menjadwalkan postingan agar tidak terdeteksi sebagai spam
+* Menyimpan data input otomatis di browser (localStorage)
+
+---
+
+## ⚙️ Konfigurasi Awal
+
+### 1. 🔧 Siapkan Google Cloud Console (OAuth 2.0 & Blogger API)
+
+1. Buka [Google Cloud Console](https://console.cloud.google.com/)
+
+2. Buat proyek baru (misal: `Blogger Post Creator Project`)
+
+3. Aktifkan **Blogger API**:
+
+   * Masuk ke `APIs & Services` > `Library`
+   * Cari "Blogger API" > Klik **Enable**
+
+4. Buat OAuth Client ID:
+
+   * Masuk ke `APIs & Services` > `Credentials`
+   * Klik `+ Create Credentials` > Pilih **OAuth Client ID**
+   * Tipe: **Web Application**
+   * Tambahkan:
+
+     * `Authorized JavaScript origins`: `https://urlwebbloggerkamu.blogspot.com`
+     * `Authorized redirect URIs`: `https://urlwebbloggerkamu.blogspot.com`
+   * Salin `Client ID` yang diberikan
+
+5. Update kode HTML:
+
+   ```javascript
+   const CLIENT_ID = 'CLIENT_ID_ANDA_DI_SINI'; // ganti dengan Client ID asli
+   const BLOG_ID = 'BLOG_ID_ANDA_DI_SINI';     // ganti dengan ID blog kamu
+   ```
+
+> 💡 **Tips:** BLOG\_ID bisa kamu temukan di URL dashboard Blogger saat buka daftar postingan.
+
+---
+
+### 2. 🖼️ Dapatkan ImgBB API Key (Opsional)
+
+Untuk fitur unggah gambar:
+
+1. Buka [https://api.imgbb.com/](https://api.imgbb.com/)
+2. Login / daftar akun
+3. Dapatkan **API Key**
+4. Update kode HTML:
+
+   ```javascript
+   const IMGBB_API_KEYS = ['API_KEY_IMGBB_KAMU'];
+   ```
+
+---
+
+### 3. 📄 Penempatan di Halaman Blogger
+
+> **Catatan:** Tempatkan kode di **Pages**, bukan **Posts**.
+
+1. Masuk ke **Dashboard Blogger**
+2. Pilih **Pages (Halaman)** > Klik **New Page**
+3. Judul halaman: `Blogger Post Creator`
+4. Ubah ke tampilan **HTML view**
+5. Tempelkan seluruh isi file `blogger-post-creator.html`
+6. Klik **Publish**
+
+---
+
+## 🚀 Cara Menggunakan Aplikasi
+
+1. **Buka Halaman** yang sudah kamu buat di Blogger
+2. **Login Google**: Klik `Hubungkan Akun Google`
+3. **Tulis Postingan:**
+
+   * Masukkan **Judul**
+   * Isi konten (HTML/Visual)
+   * **Unggah Gambar** ke ImgBB (jika diaktifkan)
+   * Masukkan **Label** (pisahkan dengan koma)
+   * Atur **Deskripsi Penelusuran (SEO)**
+   * Pilih opsi **Komentar**
+4. **Penjadwalan:**
+
+   * Publikasi sekarang
+   * Jadwal otomatis (misal: "Setelah 5 Menit")
+   * Atau pilih tanggal/waktu spesifik
+5. Klik **Buat Postingan**
+
+---
+
+## 🔐 Keamanan & Privasi
+
+* Aplikasi hanya mengakses akun Google Anda setelah Anda memberikan izin eksplisit
+* Tidak ada informasi pribadi disimpan di server (semua proses terjadi di browser Anda)
+* Menggunakan `localStorage` hanya untuk kenyamanan pengguna lokal
+
+---
+
+## 💪 Teknologi yang Digunakan
+
+* [Blogger API v3](https://developers.google.com/blogger/docs/3.0/)
+* [Google Identity Services](https://developers.google.com/identity)
+* [ImgBB API](https://api.imgbb.com/)
+* HTML, CSS (Dark Mode), JavaScript murni
+
+---
+
+## 💡 Tips Tambahan
+
+* Gunakan halaman ini untuk semua aktivitas posting agar tetap konsisten
+* Refresh halaman tidak akan menghapus judul/label (karena localStorage)
+* Anda bisa membuat beberapa halaman untuk beberapa blog (gunakan BLOG\_ID berbeda)
+
+---
+
+## 📬 Kontak & Kontribusi
+
+Jika Anda memiliki saran atau ingin berkontribusi, silakan buka issue atau pull request!
+
+---
+
+## 📄 Lisensi
+
+Proyek ini dilisensikan di bawah MIT License. Bebas digunakan dan dimodifikasi.
+
+---
+
+Selamat ngeblog dengan lebih mudah dan terstruktur! 🚀
